@@ -17,19 +17,25 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test!'
-                //sh docker scan img-php
+                sh("docker scan img-php")
+            }
+        }
+        stage('Tag') {
+            steps {
+                echo 'Tag!'
+                sh("docker tag img-php jsgiraldoh/img-php-eud")
             }
         }
         stage('Push') {
             steps {
                 echo 'Push!'
-                //sh docker tag img-php jsgiraldoh/img-php-eud
+                sh("docker push jsgiraldoh/img-php-eud")
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploy!'
-                //sh docker run -d -p 80:80 --name my-running-app jsgiraldoh/img-php-eud
+                sh("docker run -d -p 80:80 --name my-running-app jsgiraldoh/img-php-eud")
             }
         }
     }
