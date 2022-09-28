@@ -11,25 +11,25 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build!'
-                docker build --tag img-php .
+                sh docker build --tag img-php .
             }
         }
         stage('Test') {
             steps {
                 echo 'Test!'
-                docker scan img-php
+                sh docker scan img-php
             }
         }
         stage('Push') {
             steps {
                 echo 'Push!'
-                docker tag img-php jsgiraldoh/img-php-eud
+                sh docker tag img-php jsgiraldoh/img-php-eud
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploy!'
-                docker run -d -p 80:80 --name my-running-app jsgiraldoh/img-php-eud
+                sh docker run -d -p 80:80 --name my-running-app jsgiraldoh/img-php-eud
             }
         }
     }
