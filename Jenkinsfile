@@ -27,6 +27,9 @@ pipeline {
             }
         }
         stage('Push') {
+            options {
+                timeout(time: 1, unit: 'HOURS') 
+            }
             steps {
                 echo 'Push!'
                 sh("docker push jsgiraldoh/img-php-eud")
