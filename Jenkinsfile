@@ -31,6 +31,8 @@ pipeline {
                 timeout(time: 1, unit: 'HOURS') 
             }
             steps {
+                echo 'Login!'
+                sh("docker login")
                 echo 'Push!'
                 sh("docker push jsgiraldoh/img-php-eud")
             }
