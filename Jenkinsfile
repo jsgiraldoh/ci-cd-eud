@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build!'
-                //sh docker build --tag img-php .
+                sh docker build --tag img-php .
             }
         }
         stage('Test') {
@@ -34,7 +34,7 @@ pipeline {
         }
     }
     post {
-        sucess{
+        success{
             echo "Good Job!"
         }
         always{
